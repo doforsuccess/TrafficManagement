@@ -6,14 +6,6 @@ car_cascade = cv2.CascadeClassifier('xmlFiles/cars.xml')
 while True:
     ret, frame = cap.read()
 
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-
-    cars = car_cascade.detectMultiScale(gray, 1.1, 1)
-
-    # To draw a rectangle in each cars
-    for (x, y, w, h) in cars:
-        cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 2)
-
     y = 0
     x = 0
     h = 100
@@ -24,9 +16,36 @@ while True:
     # crops the live image from 200 px to 400px along x and from 100px to 300px along y
     crop2 = frame[y + h:300, x + w:400]
 
-    cv2.imshow('first half', crop1)
-    cv2.imshow('second half', crop2)
+    gray1 = cv2.cvtColor(crop1, cv2.COLOR_BGR2GRAY)
 
+    cars1 = car_cascade.detectMultiScale(gray1, 1.1, 1)
+
+    # To draw a rectangle in each cars
+    for (x, y, w, h) in cars1:
+        cv2.rectangle(crop1, (x, y), (x + w, y + h), (0, 0, 255), 2)
+
+    cv2.imshow('First Croped Image', crop1)
+
+
+
+    gray2 = cv2.cvtColor(crop2, cv2.COLOR_BGR2GRAY)
+
+    cars2 = car_cascade.detectMultiScale(gray2, 1.1, 1)
+
+    # To draw a rectangle in each cars
+    for (x, y, w, h) in cars2:
+        cv2.rectangle(crop2, (x, y), (x + w, y + h), (0, 0, 255), 2)
+
+    cv2.imshow('Second Croped Image', crop2)
+
+    print(len(cars1),len(cars2))
+
+
+#Here will be the code to turn on and off led of different roads
+    if len(cars1)>len(cars2):
+        print('road1 green led on and road2 red led on')
+    else:
+        print('road2 green led on and road1 red led on')
 
     # Wait for Esc key to stop
     if cv2.waitKey(33) == 27:
