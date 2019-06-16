@@ -1,9 +1,9 @@
 import cv2 as cv
 import numpy as np
-ref_path='D:\\python\\project\\empty.jpg'
-ref_lane1='D:\\python\\project\\lane1.jpg'
-ref_lane2='D:\\python\\project\\lane2.jpg'
-ref_lane3='D:\\python\\project\\lane3.jpg'
+ref_path='empty.jpg'
+ref_lane1='lane1.jpg'
+ref_lane2='lane2.jpg'
+ref_lane3='lane3.jpg'
 def matchingpercent(ref_path0,real_path0):
     ref = cv.imread(ref_path0)
     ref_gray = cv.cvtColor(ref, cv.COLOR_RGB2GRAY)
