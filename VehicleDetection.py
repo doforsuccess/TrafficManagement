@@ -1,20 +1,20 @@
 import cv2
 
-cap = cv2.VideoCapture('video.avi')
-car_cascade = cv2.CascadeClassifier('xmlFiles/cars.xml')
+cap = cv2.VideoCapture('videos/new.mp4')
+car_cascade = cv2.CascadeClassifier('xmlFiles/cascade.xml')
 
 while True:
     ret, frame = cap.read()
 
     y = 0
     x = 0
-    h = 100
-    w = 200
+    w = 1024
+    h = 600
     # crops the live image from 0 px to 200px along x and from 0px to 100px along y
-    crop1 = frame[y:y + h, x:x + w]
+    crop1 = frame[y:y + h, x:x + 512]
 
     # crops the live image from 200 px to 400px along x and from 100px to 300px along y
-    crop2 = frame[y + h:300, x + w:400]
+    crop2 = frame[y :600, x + 512:1024]
 
     gray1 = cv2.cvtColor(crop1, cv2.COLOR_BGR2GRAY)
 
